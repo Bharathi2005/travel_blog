@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -11,16 +11,24 @@ const Navbar = () => {
         {/* Navbar Links */}
         <ul className="flex space-x-8 text-white font-semibold">
           <li>
-            <Link to="/" className="hover:text-yellow-500">Home</Link>
+            <Link to="/" className="hover:text-yellow-500">
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/create-blog" className="hover:text-yellow-500">Create Blog</Link>
+            <Link to="/create-blog" className="hover:text-yellow-500">
+              Create Blog
+            </Link>
           </li>
           <li>
-            <Link to="/blog" className="hover:text-yellow-500">Blog</Link>
+            <Link to="/blog" className="hover:text-yellow-500">
+              Blog
+            </Link>
           </li>
           <li>
-            <Link to="/login" className="hover:text-yellow-500">Login</Link>
+            <Link to="/login" className="hover:text-yellow-500">
+              Login
+            </Link>
           </li>
         </ul>
       </div>
