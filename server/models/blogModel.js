@@ -13,19 +13,13 @@ const BlogSchema = new mongoose.Schema(
       type: String,
       required: [true, "Image URL is required"],
       trim: true,
-      validate: {
-        validator: function (v) {
-          return /^https?:\/\/.+\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(v);
-        },
-        message: (props) => `${props.value} is not a valid image URL!`,
-      },
     },
     location: {
       type: String,
       required: [true, "Location is required"],
       trim: true,
     },
-    content: {
+    desc: {
       type: String,
       required: [true, "Content is required"],
     },
