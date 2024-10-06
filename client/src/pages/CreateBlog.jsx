@@ -73,92 +73,23 @@ const CreateBlog = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <div className="bg-white p-8 rounded shadow-lg w-full max-w-lg">
-        <h1 className="text-2xl font-bold mb-6">Create a New Blog Post</h1>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Title Field */}
-          <div>
+    <div className="min-h-screen flex items-center justify-center bg-white">
+      <div className="bg-gray-100 p-8 rounded shadow-lg w-full max-w-md">
+        <h1 className="text-2xl font-bold mb-4">Create a New Blog Post</h1>
+        <form>
+          <div className="mb-4">
             <label className="block text-gray-700">Title:</label>
             <input
               type="text"
-              className={`mt-1 p-2 w-full border ${
-                errors.title ? "border-red-500" : "border-gray-300"
-              } rounded`}
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
+              className="mt-2 p-2 w-full border border-gray-300 rounded"
+              name="title"
             />
-            {errors.title && (
-              <p className="text-red-500 text-sm mt-1">{errors.title}</p>
-            )}
           </div>
-
-          {/* Image URL Field */}
-          <div>
-            <label className="block text-gray-700">Image URL:</label>
-            <input
-              type="url"
-              className={`mt-1 p-2 w-full border ${
-                errors.img ? "border-red-500" : "border-gray-300"
-              } rounded`}
-              value={img}
-              onChange={(e) => setImg(e.target.value)}
-              required
-            />
-            {errors.img && (
-              <p className="text-red-500 text-sm mt-1">{errors.img}</p>
-            )}
-            {/* Image Preview */}
-            {img && (
-              <div className="mt-2">
-                <img
-                  src={img}
-                  alt="Preview"
-                  className="w-full h-48 object-cover rounded"
-                  onError={(e) => {
-                    e.target.src = "https://via.placeholder.com/150";
-                    toast.error(
-                      "Invalid image URL. Showing placeholder image.",
-                      {
-                        className:
-                          "bg-gradient-to-r from-yellow-500 to-amber-500 rounded-lg shadow-lg text-white p-3 flex gap-5 text-lg font-bold",
-                        icon: <MessageCircleWarning />,
-                      }
-                    );
-                  }}
-                />
-              </div>
-            )}
-          </div>
-
-          {/* Location Field */}
-          <div>
-            <label className="block text-gray-700">Location:</label>
-            <input
-              type="text"
-              className={`mt-1 p-2 w-full border ${
-                errors.location ? "border-red-500" : "border-gray-300"
-              } rounded`}
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              required
-            />
-            {errors.location && (
-              <p className="text-red-500 text-sm mt-1">{errors.location}</p>
-            )}
-          </div>
-
-          {/* Content Field */}
-          <div>
+          <div className="mb-4">
             <label className="block text-gray-700">Content:</label>
             <textarea
-              className={`mt-1 p-2 w-full border ${
-                errors.content ? "border-red-500" : "border-gray-300"
-              } rounded h-32`}
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              required
+              className="mt-2 p-2 w-full border border-gray-300 rounded"
+              name="content"
             ></textarea>
             {errors.content && (
               <p className="text-red-500 text-sm mt-1">{errors.content}</p>
