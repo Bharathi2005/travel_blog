@@ -1,15 +1,18 @@
-import React from 'react';
+import React from "react";
+import { BlogProvider } from "./context/BlogContext";
+import CreateBlog from "./pages/CreateBlog";
+import Blog from "./pages/Blog";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home'
-import CreateBlog from './pages/CreateBlog';
-import Blog from './pages/Blog';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
-const App = () => {
+
+function App() {
   return (
-    <Router>
+    <BlogProvider>
+      <Router>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -19,7 +22,8 @@ const App = () => {
         <Route path="/register" element={<Register/>}/>
       </Routes>
     </Router>
+    </BlogProvider>
   );
-};
+}
 
 export default App;
