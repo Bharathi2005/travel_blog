@@ -1,39 +1,33 @@
 import React from 'react';
-
+import home1 from '../assets/img/home1.png'
+import h1 from '../assets/img/himalays.png'
+import t1 from  '../assets/img/t1.png'
 const Blog = () => {
   const blogs = [
     {
       id: 1,
-      title: "Exploring the Majestic Mountains",
+      
       place: "Himalayas, Nepal",
       description: "Discover the beauty of the Himalayas with breathtaking views, thrilling treks, and serene nature.",
-      image: "https://example.com/himalayas.jpg",
+      image: h1,
     },
     {
       id: 2,
-      title: "A Journey Through the Streets of Tokyo",
+      
       place: "Tokyo, Japan",
       description: "Experience the vibrant city life, explore traditional temples, and enjoy the unique cuisine of Tokyo.",
-      image: "https://example.com/tokyo.jpg",
+      image: home1,
     },
     {
       id: 3,
-      title: "Relaxing on the Beaches of Bali",
       place: "Bali, Indonesia",
       description: "Soak up the sun on Bali’s pristine beaches, enjoy water sports, and discover local culture.",
-      image: "https://example.com/bali.jpg",
-    },
-    {
-      id: 4,
-      title: "Exploring the Cultural Wonders of Paris",
-      place: "Paris, France",
-      description: "Visit iconic landmarks like the Eiffel Tower and immerse yourself in Parisian art and history.",
-      image: "https://example.com/paris.jpg",
+      image: t1,
     },
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12">
+    <div className="min-h-screen bg-blue-300 py-12">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-gray-800">Latest Blog Posts</h1>
         <p className="mt-4 text-gray-600">Explore our latest travel adventures from different places around the world!</p>

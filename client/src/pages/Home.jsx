@@ -1,14 +1,15 @@
 import React from 'react';
+import home2 from '../assets/img/home1.png'; // Importing the image
 
 const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
       <div className="relative w-full h-screen">
-        {/* Background Image */}
+        {/* Set Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('../assets/img/home1.png')" }} e
+          style={{ backgroundImage: `url(${home2})` }} // Correct inline style for background image
         ></div>
 
         {/* Overlay and Text */}
@@ -18,9 +19,7 @@ const Home = () => {
             <p className="text-xl mb-6">
               Join our community of travel enthusiasts to share and document your journeys.
             </p>
-            <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-lg">
-              Start Your Journey
-            </button>
+            
           </div>
         </div>
       </div>
@@ -38,16 +37,11 @@ const Home = () => {
           Through our travel blog, we aim to inspire your next adventure, whether you're exploring far-flung destinations or discovering hidden gems in your own backyard. Let’s embrace the unknown, seek out the unexplored, and make every moment count.
         </p>
 
-        {/* Travel Image */}
-        <div className="mt-8">
-          <img
-            src="../assets/img/home.jfif" // Make sure the image path is correct or replace with an external URL
-            alt="Exploring the World"
-            className="w-full md:w-3/4 mx-auto rounded-lg shadow-lg"
-          />
+       
+      
         </div>
       </div>
-    </div>
+    
   );
 };
 
