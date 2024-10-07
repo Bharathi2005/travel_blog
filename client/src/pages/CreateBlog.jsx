@@ -1,20 +1,21 @@
-import React, { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { BlogContext } from "../context/BlogContext";
+import { addBlog } from "../services/api";
 
-const CreateBlog = () => {
+export const CreateBlog = () => {
   const { setBlogs } = useContext(BlogContext);
   const [formData, setFormData] = useState({
     title: "",
-    image: null,
+    img: "", // Change img to an empty string for URL
     location: "",
-    content: "",
+    desc: "",
   });
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: name === "image" ? files[0] : value,
+      [name]: value,
     }));
   };
 
@@ -23,12 +24,35 @@ const CreateBlog = () => {
     const newBlog = {
       id: Date.now(), // Unique ID
       title: formData.title,
-      image: URL.createObjectURL(formData.image), // Use object URL for preview
-      place: formData.location,
-      description: formData.content,
+      img: formData.img, // Use the URL directly
+      location: formData.location,
+      desc: formData.desc,
     };
     setBlogs((prevBlogs) => [...prevBlogs, newBlog]);
-    setFormData({ title: "", image: null, location: "", content: "" }); // Reset form
+    handleAddBlog();
+    setFormData({ title: "", img: "", location: "", desc: "" }); // Reset form
+  };
+
+  const titler = useRef(null);
+  const locationr = useRef(null);
+  const descr = useRef(null);
+
+  const handleAddBlog = async () => {
+    const blogdata = {
+      title: titler.current.value,
+      img: formData.img, // Use the image URL from formData
+      location: locationr.current.value,
+      desc: descr.current.value,
+    };
+    try {
+      const res = await addBlog(blogdata);
+      console.log(res);
+      if (res.status === 200) {
+        console.log("ADDED");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -42,18 +66,20 @@ const CreateBlog = () => {
               type="text"
               className="mt-2 p-2 w-full border border-gray-300 rounded"
               name="title"
+              ref={titler}
               placeholder="Enter blog title"
               value={formData.title}
               onChange={handleChange}
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Upload Image:</label>
+            <label className="block text-gray-700">Image URL:</label>
             <input
-              type="file"
+              type="text"
               className="mt-2 p-2 w-full border border-gray-300 rounded"
-              name="image"
-              accept="image/*"
+              name="img" // Keep the name as 'img'
+              placeholder="Enter image URL"
+              value={formData.img} // Set value to formData.img
               onChange={handleChange}
             />
           </div>
@@ -63,6 +89,7 @@ const CreateBlog = () => {
               type="text"
               className="mt-2 p-2 w-full border border-gray-300 rounded"
               name="location"
+              ref={locationr}
               placeholder="Enter location"
               value={formData.location}
               onChange={handleChange}
@@ -72,9 +99,10 @@ const CreateBlog = () => {
             <label className="block text-gray-700">Description:</label>
             <textarea
               className="mt-2 p-2 w-full border border-gray-300 rounded"
-              name="content"
+              name="desc"
+              ref={descr}
               placeholder="Enter blog content"
-              value={formData.content}
+              value={formData.desc}
               onChange={handleChange}
             ></textarea>
           </div>
@@ -89,5 +117,3 @@ const CreateBlog = () => {
     </div>
   );
 };
-
-export default CreateBlog;

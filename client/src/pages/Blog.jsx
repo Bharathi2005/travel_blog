@@ -1,11 +1,27 @@
-import React, { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { getBlogs } from "../services/api";
 import { BlogContext } from "../context/BlogContext"; // Adjust the import if necessary
 import Modal from "../components/Modal";
 
 const Blog = () => {
-  const { blogs } = useContext(BlogContext); // Assuming BlogContext provides blogs
+  const { blogs, setBlogs } = useContext(BlogContext); // Ensure you can set blogs
   const [selectedBlog, setSelectedBlog] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Fetch blogs from backend
+  const fetchBlogs = async () => {
+    try {
+      const { data } = await getBlogs();
+      console.log(data);
+      setBlogs(data); // Update context with fetched blogs
+    } catch (error) {
+      console.error("Error fetching blogs:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBlogs(); // Call fetchBlogs when component mounts
+  }, []);
 
   const handleReadMore = (blog) => {
     setSelectedBlog(blog);
@@ -22,7 +38,8 @@ const Blog = () => {
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-gray-800">Latest Blog Posts</h1>
         <p className="mt-4 text-gray-600">
-          Explore our latest travel adventures from different places around the world!
+          Explore our latest travel adventures from different places around the
+          world!
         </p>
       </div>
 
@@ -33,13 +50,13 @@ const Blog = () => {
             className="bg-white rounded-lg shadow-lg overflow-hidden"
           >
             <img
-              src={blog.image}
+              src={blog.img}
               alt={blog.title}
               className="w-full h-48 object-cover"
             />
             <div className="p-6">
               <h2 className="text-2xl font-bold text-gray-800">{blog.title}</h2>
-              <p className="text-gray-600 text-sm mt-2">{blog.place}</p>
+              <p className="text-gray-600 text-sm mt-2">{blog.location}</p>
               <button
                 onClick={() => handleReadMore(blog)}
                 className="mt-6 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded"
@@ -56,9 +73,9 @@ const Blog = () => {
           isOpen={isModalOpen}
           onClose={closeModal}
           title={selectedBlog.title}
-          image={selectedBlog.image} // Pass image to Modal
-          place={selectedBlog.place}   // Pass place to Modal
-          description={selectedBlog.description} // Pass description to Modal
+          image={selectedBlog.img} // Pass image to Modal
+          place={selectedBlog.location} // Pass place to Modal
+          description={selectedBlog.desc} // Pass description to Modal
         />
       )}
     </div>
