@@ -6,10 +6,13 @@ const Home = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <div className="relative w-full h-screen">
-        {/* Set Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${home2})` }} // Correct inline style for background image
+          style={{
+            backgroundImage: `url(${home2})`,
+            backgroundSize: "cover", // Ensures the background covers the whole screen
+            backgroundPosition: "center", // Centers the image
+          }}
         ></div>
 
         {/* Overlay and Text */}
