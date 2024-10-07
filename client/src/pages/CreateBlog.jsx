@@ -6,7 +6,6 @@ const CreateBlog = () => {
       <div className="bg-gray-100 p-8 rounded shadow-lg w-full max-w-md">
         <h1 className="text-2xl font-bold mb-4">Create a New Blog Post</h1>
         <form>
-          {/* Title Field */}
           <div className="mb-4">
             <label className="block text-gray-700">Title:</label>
             <input
@@ -16,29 +15,6 @@ const CreateBlog = () => {
               placeholder="Enter blog title"
             />
           </div>
-
-          {/* Content Field */}
-          <div className="mb-4">
-            <label className="block text-gray-700">Content:</label>
-            <textarea
-              className="mt-2 p-2 w-full border border-gray-300 rounded"
-              name="content"
-              placeholder="Enter blog content"
-            ></textarea>
-          </div>
-
-          {/* Location Field */}
-          <div className="mb-4">
-            <label className="block text-gray-700">Location:</label>
-            <input
-              type="text"
-              className="mt-2 p-2 w-full border border-gray-300 rounded"
-              name="location"
-              placeholder="Enter location"
-            />
-          </div>
-
-          {/* Image Upload Field */}
           <div className="mb-4">
             <label className="block text-gray-700">Upload Image:</label>
             <input
@@ -48,8 +24,23 @@ const CreateBlog = () => {
               accept="image/*"
             />
           </div>
-
-          {/* Submit Button */}
+          <div className="mb-4">
+            <label className="block text-gray-700">Location:</label>
+            <input
+              type="text"
+              className="mt-2 p-2 w-full border border-gray-300 rounded"
+              name="location"
+              placeholder="Enter location"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700">Description:</label>
+            <textarea
+              className="mt-2 p-2 w-full border border-gray-300 rounded"
+              name="content"
+              placeholder="Enter blog content"
+            ></textarea>
+          </div>
           <button
             type="submit"
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
