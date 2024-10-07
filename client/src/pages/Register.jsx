@@ -27,7 +27,7 @@ const Register = () => {
           <div className="mb-4">
             <label className="block text-gray-700">Phone No.:</label>
             <input
-              type="number"
+              type="tel"
               className="mt-2 p-2 w-full border border-gray-300 rounded"
               name="phone"
               placeholder="Enter your phone number"
