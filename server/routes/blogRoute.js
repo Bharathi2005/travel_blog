@@ -2,20 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Blog = require("../models/blogModel");
 
-// Middleware to get blog by ID
-async function getBlog(req, res, next) {
-  let blog;
-  try {
-    blog = await Blog.findById(req.params.id);
-    if (!blog) return res.status(404).json({ message: "Cannot find blog" });
-  } catch (error) {
-    return res.status(500).json({ message: error.message });
-  }
-
-  res.blog = blog;
-  next();
-}
-
 //get blog
 router.get("/", async (req, res) => {
   try {
@@ -27,8 +13,20 @@ router.get("/", async (req, res) => {
 });
 
 //Get blog by id
-router.get("/:id", getBlog, (req, res) => {
-  res.json(res.blog);
+router.get("/view/:id", async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const currentBlog = await Blog.findOne({ _id: id });
+
+    if (!currentBlog) {
+      return res.status(404).json({ message: "Blog not found!" });
+    }
+
+    res.status(200).json(currentBlog);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });
 
 //Post blog
@@ -46,40 +44,46 @@ router.post("/", async (req, res) => {
     const newBlog = await blog.save();
     res.status(201).json(newBlog);
   } catch (error) {
-    if (error.name === "ValidationError") {
-      const messages = Object.values(error.errors).map((val) => val.message);
-      return res.status(400).json({ message: messages.join(", ") });
-    }
     res.status(400).json({ message: error.message });
   }
 });
 
 //Update
-router.put("/:id", getBlog, async (req, res) => {
+router.put("/update/:id", async (req, res) => {
   const { title, img, location, desc } = req.body;
-
-  if (title) res.blog.title = title;
-  if (img) res.blog.img = img;
-  if (location) res.blog.location = location;
-  if (desc) res.blog.desc = desc;
+  const id = req.params.id;
 
   try {
-    const updatedBlog = await res.blog.save();
-    res.json(updatedBlog);
-  } catch (error) {
-    if (error.name === "ValidationError") {
-      const messages = Object.values(error.errors).map((val) => val.message);
-      return res.status(400).json({ message: messages.join(", ") });
+    const currentBlog = await Blog.findOne({ _id: id });
+
+    if (!currentBlog) {
+      return res.status(404).json({ message: "Blog not found!" });
     }
-    res.status(400).json({ message: error.message });
+
+    if (title) currentBlog.title = title;
+    if (img) currentBlog.img = img;
+    if (location) currentBlog.location = location;
+    if (desc) currentBlog.desc = desc;
+
+    const updatedBlog = await currentBlog.save();
+    res.status(200).json(updatedBlog);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 
 //delete
-router.delete("/:id", getBlog, async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
   try {
-    await res.blog.deleteOne();
-    res.json({ message: "Blog deleted" });
+    const id = req.params.id;
+    const currentBlog = await Blog.findOne({ _id: id });
+
+    if (!currentBlog) {
+      return res.status(404).json({ message: "Blog not found!" });
+    }
+
+    await Blog.findByIdAndDelete(id);
+    res.status(200).json({ message: "Blog Deleted!" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
