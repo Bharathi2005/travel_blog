@@ -8,16 +8,16 @@ router.post("/register", async (req, res) => {
     const { username, email, password, phone } = newuserdata;
     const finduser = await User.findOne({ email: email });
     if (finduser !== null) {
-      res.status(400).json({ message: "Email Already Exists !" });
+      return res.status(400).json({ message: "Email Already Exists!" });
     }
     if (!username || !phone || !email || !password) {
-      res.status(400).json({ message: "All fields Required !" });
+      return res.status(400).json({ message: "All fields required!" });
     }
     const savedata = await newuserdata.save();
-    res.status(200).json(savedata);
+    return res.status(200).json(savedata);
   } catch (error) {
-    res.status(500).json(error);
     console.log(error);
+    return res.status(500).json(error);
   }
 });
 

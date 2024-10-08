@@ -8,6 +8,6 @@ const addBlog = (blogdata) => axios.post(`${API}/blogs/`, blogdata);
 const editBlog = (id, blogdata) =>
   axios.put(`${API}/blogs/update/${id}`, blogdata);
 const deleteBlog = (id) => axios.delete(`${API}/blogs/delete/${id}`);
-const signup = (userData) => axios.post(`${API}/register`, userData);
-const login = (credentials) => axios.post(`${API}/login`, credentials);
+const signup = (userdata) => axios.post(`${API}/users/register`, userdata);
+const login = (credentials) => axios.post(`${API}/users/login`, credentials);
 export { getBlogs, getBlogbyID, addBlog, editBlog, deleteBlog, signup, login };

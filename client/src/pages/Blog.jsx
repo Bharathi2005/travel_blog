@@ -1,26 +1,25 @@
 import { useContext, useEffect, useState } from "react";
 import { getBlogs } from "../services/api";
-import { BlogContext } from "../context/BlogContext"; // Adjust the import if necessary
+import { BlogContext } from "../context/BlogContext";
 import Modal from "../components/Modal";
 
 const Blog = () => {
-  const { blogs, setBlogs } = useContext(BlogContext); // Ensure you can set blogs
+  const { blogs, setBlogs } = useContext(BlogContext);
   const [selectedBlog, setSelectedBlog] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Fetch blogs from backend
   const fetchBlogs = async () => {
     try {
       const { data } = await getBlogs();
       console.log(data);
-      setBlogs(data); // Update context with fetched blogs
+      setBlogs(data);
     } catch (error) {
       console.error("Error fetching blogs:", error);
     }
   };
 
   useEffect(() => {
-    fetchBlogs(); // Call fetchBlogs when component mounts
+    fetchBlogs();
   }, []);
 
   const handleReadMore = (blog) => {
@@ -73,9 +72,9 @@ const Blog = () => {
           isOpen={isModalOpen}
           onClose={closeModal}
           title={selectedBlog.title}
-          image={selectedBlog.img} // Pass image to Modal
-          place={selectedBlog.location} // Pass place to Modal
-          description={selectedBlog.desc} // Pass description to Modal
+          image={selectedBlog.img}
+          place={selectedBlog.location}
+          description={selectedBlog.desc}
         />
       )}
     </div>

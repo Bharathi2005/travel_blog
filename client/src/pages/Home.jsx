@@ -1,10 +1,8 @@
-import React from "react";
 import home2 from "../assets/img/home1.png"; // Importing the image
 
 const Home = () => {
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
       <div className="relative w-full h-screen">
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -15,7 +13,6 @@ const Home = () => {
           }}
         ></div>
 
-        {/* Overlay and Text */}
         <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="text-center text-white">
             <h1 className="text-6xl font-bold mb-4">
@@ -29,7 +26,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* About Travel Section */}
       <div className="w-full py-16 px-8 text-center">
         <h2 className="text-4xl font-bold text-gray-800 mb-8">Why Travel?</h2>
         <p className="text-lg text-gray-700 mb-6 max-w-4xl mx-auto">

@@ -6,7 +6,7 @@ export const CreateBlog = () => {
   const { setBlogs } = useContext(BlogContext);
   const [formData, setFormData] = useState({
     title: "",
-    img: "", // Change img to an empty string for URL
+    img: "",
     location: "",
     desc: "",
   });
@@ -22,15 +22,15 @@ export const CreateBlog = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newBlog = {
-      id: Date.now(), // Unique ID
+      id: Date.now(),
       title: formData.title,
-      img: formData.img, // Use the URL directly
+      img: formData.img,
       location: formData.location,
       desc: formData.desc,
     };
     setBlogs((prevBlogs) => [...prevBlogs, newBlog]);
     handleAddBlog();
-    setFormData({ title: "", img: "", location: "", desc: "" }); // Reset form
+    setFormData({ title: "", img: "", location: "", desc: "" });
   };
 
   const titler = useRef(null);
@@ -40,7 +40,7 @@ export const CreateBlog = () => {
   const handleAddBlog = async () => {
     const blogdata = {
       title: titler.current.value,
-      img: formData.img, // Use the image URL from formData
+      img: formData.img,
       location: locationr.current.value,
       desc: descr.current.value,
     };
@@ -77,9 +77,9 @@ export const CreateBlog = () => {
             <input
               type="text"
               className="mt-2 p-2 w-full border border-gray-300 rounded"
-              name="img" // Keep the name as 'img'
+              name="img"
               placeholder="Enter image URL"
-              value={formData.img} // Set value to formData.img
+              value={formData.img}
               onChange={handleChange}
             />
           </div>
