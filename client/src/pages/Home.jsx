@@ -8,8 +8,8 @@ const Home = () => {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: `url(${home2})`,
-            backgroundSize: "cover", // Ensures the background covers the whole screen
-            backgroundPosition: "center", // Centers the image
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
         ></div>
 

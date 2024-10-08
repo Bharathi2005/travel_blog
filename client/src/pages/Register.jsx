@@ -1,11 +1,20 @@
 import { signup } from "../services/api";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const usernamer = useRef(null);
   const emailr = useRef(null);
   const phoner = useRef(null);
   const passwordr = useRef(null);
+  const navigate = useNavigate();
+
+  const resetForm = () => {
+    usernamer.current.value = "";
+    emailr.current.value = "";
+    phoner.current.value = "";
+    passwordr.current.value = "";
+  };
 
   const signUp = async (e) => {
     e.preventDefault();
@@ -23,6 +32,8 @@ const Register = () => {
       console.log(res);
       if (res.status === 200) {
         console.log("ADDED");
+        resetForm();
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
@@ -55,7 +66,7 @@ const Register = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Phone No.:</label>
+            <label className="block text-gray-700">Phone No:</label>
             <input
               type="tel"
               className="mt-2 p-2 w-full border border-gray-300 rounded"
