@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { login } from "../redux/userSlice"; // Import the login action from Redux
-import { login as apiLogin } from "../services/api"; // Assuming this is your API service to handle login
+import { login } from "../redux/userSlice";
+import { login as apiLogin } from "../services/api";
 
 const Login = () => {
   const emailRef = useRef(null);

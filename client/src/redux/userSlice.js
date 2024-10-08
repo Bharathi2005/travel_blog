@@ -4,25 +4,23 @@ export const userSlice = createSlice({
   name: "user",
   initialState: {
     user: null,
-    auth: false, // Track if the user is authenticated
+    auth: false,
   },
   reducers: {
     login: (state, action) => {
       state.user = action.payload.email;
-      state.auth = true; // Set auth to true on login
+      state.auth = true;
     },
     logout: (state) => {
       state.user = null;
-      state.auth = false; // Reset auth on logout
+      state.auth = false;
     },
   },
 });
 
-// Export the actions
 export const { login, logout } = userSlice.actions;
 
-// Selectors
-export const selectUser = (state) => state.user.user; // Selector for user info
-export const selectAuth = (state) => state.user.auth; // Selector for auth status
+export const selectUser = (state) => state.user.user;
+export const selectAuth = (state) => state.user.auth;
 
 export default userSlice.reducer;

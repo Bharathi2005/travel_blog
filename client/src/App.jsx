@@ -6,15 +6,14 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import store from "./redux/store"; // Import your Redux store
+import store from "./redux/store";
 
-import { Provider } from "react-redux"; // Import Provider from react-redux
+import { Provider } from "react-redux";
 
 function App() {
   return (
     <Provider store={store}>
       {" "}
-      {/* Wrap your app with Provider and pass the store */}
       <BlogProvider>
         <Router>
           <Navbar />

@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { selectAuth, logout } from "../redux/userSlice"; // Import selectors and actions
+import { selectAuth, logout } from "../redux/userSlice";
 
 const Navbar = () => {
-  const auth = useSelector(selectAuth); // Get the auth status from Redux
+  const auth = useSelector(selectAuth);
   const dispatch = useDispatch();
 
   const handleLogout = () => {

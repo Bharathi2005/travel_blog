@@ -1,7 +1,5 @@
 import axios from "axios";
 const API = import.meta.env.VITE_API;
-//const API = "http://localhost:7000"
-// const API = import.meta.env.APIMOCK
 const getBlogs = () => axios.get(`${API}/blogs/`);
 const getBlogbyID = (id) => axios.get(`${API}/blogs/view/${id}`);
 const addBlog = (blogdata) => axios.post(`${API}/blogs/`, blogdata);
