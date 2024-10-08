@@ -32,11 +32,15 @@ const Blog = () => {
             key={blog.id}
             className="bg-white rounded-lg shadow-lg overflow-hidden"
           >
-            <img
-              src={blog.image}
-              alt={blog.title}
-              className="w-full h-48 object-cover"
-            />
+         <div className="h-64 flex items-center justify-center">
+  <img
+    src={blog.image}
+    alt={blog.title}
+    className="w-[90%] h-[90%] object-contain"
+  />
+</div>
+
+
             <div className="p-6">
               <h2 className="text-2xl font-bold text-gray-800">{blog.title}</h2>
               <p className="text-gray-600 text-sm mt-2">{blog.place}</p>
