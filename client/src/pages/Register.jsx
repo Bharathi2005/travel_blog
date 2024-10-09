@@ -41,8 +41,18 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-blue-300">
-      <div className="bg-slate-300 p-8 rounded shadow-lg w-full max-w-md">
+    <div
+      className="min-h-screen bg-opacity-0 flex clr1 items-center justify-center bg-cover bg-center"
+      style={{
+        backgroundImage: `url('https://ik.imagekit.io/fdc5q1zdo/home1.png?updatedAt=1728384534897')`,
+      }}
+    >
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+    <div className="min-h-screen flex items-center justify-center ">
+      <div className="bg-white bg-opacity-50 p-8 rounded shadow-lg w-96 max-w-md">
         <h1 className="text-2xl font-bold mb-4">Register</h1>
         <form onSubmit={signUp}>
           <div className="mb-4">
@@ -93,6 +103,7 @@ const Register = () => {
           </button>
         </form>
       </div>
+    </div>
     </div>
   );
 };

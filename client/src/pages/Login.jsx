@@ -1,40 +1,46 @@
-import { useRef, useState } from "react"; // Import useRef and useState
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
-import { login } from "../services/api"; // Import the login function from your API
+import { useRef, useState } from "react"; 
+import { Link, useNavigate } from "react-router-dom"; 
+import { login } from "../services/api"; 
 
 const Login = () => {
-  const emailRef = useRef(null); // Ref for the email input
-  const passwordRef = useRef(null); // Ref for the password input
-  const [error, setError] = useState(""); // State for error messages
-  const navigate = useNavigate(); // Initialize useNavigate for navigation
+  const emailRef = useRef(null); 
+  const passwordRef = useRef(null); 
+  const [error, setError] = useState(""); 
+  const navigate = useNavigate(); 
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Prevent the default form submission
+    e.preventDefault(); 
 
     const credentials = {
-      email: emailRef.current.value, // Get email from the ref
-      password: passwordRef.current.value, // Get password from the ref
+      email: emailRef.current.value, 
+      password: passwordRef.current.value, 
     };
 
     try {
-      const res = await login(credentials); // Call the login function with credentials
+      const res = await login(credentials); 
       if (res.status === 200) {
         console.log("Login successful");
-        navigate("/"); // Redirect to the home page on successful login
+        navigate("/"); 
       }
     } catch (error) {
       console.error("Login failed:", error);
-      setError("Invalid email or password."); // Set error message on failure
+      setError("Invalid email or password."); 
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-blue-300">
-      <div className="bg-slate-300 p-8 rounded shadow-lg w-full max-w-md">
+    <div
+      className="min-h-screen bg-opacity-0 flex clr1 items-center justify-center bg-cover bg-center"
+      style={{
+        backgroundImage: `url('https://ik.imagekit.io/fdc5q1zdo/home1.png?updatedAt=1728384534897')`,
+      }}
+    >
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="bg-white bg-opacity-50 p-8 rounded shadow-lg w-full max-w-md">
         <h1 className="text-2xl font-bold mb-4">Login</h1>
         <form onSubmit={handleLogin}>
           {" "}
-          {/* Attach handleLogin to form submit */}
+      
           <div className="mb-4">
             <label className="block text-gray-700">Email:</label>
             <input
@@ -42,8 +48,8 @@ const Login = () => {
               className="mt-2 p-2 w-full border border-gray-300 rounded"
               name="email"
               placeholder="Enter your Email"
-              ref={emailRef} // Attach ref to input
-              required // Make this field required
+              ref={emailRef} 
+              required 
             />
           </div>
           <div className="mb-4">
@@ -53,12 +59,11 @@ const Login = () => {
               className="mt-2 p-2 w-full border border-gray-300 rounded"
               name="password"
               placeholder="Enter your password"
-              ref={passwordRef} // Attach ref to input
-              required // Make this field required
+              ref={passwordRef} 
+              required 
             />
           </div>
           {error && <p className="text-red-500">{error}</p>}{" "}
-          {/* Display error message */}
           <button
             type="submit"
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
@@ -77,7 +82,9 @@ const Login = () => {
         </div>
       </div>
     </div>
+    </div>
   );
+
 };
 
 export default Login;

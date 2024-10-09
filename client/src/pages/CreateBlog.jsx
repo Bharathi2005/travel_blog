@@ -56,10 +56,16 @@ export const CreateBlog = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-blue-300">
-      <div className="bg-gray-100 p-8 rounded shadow-lg w-full max-w-md">
-        <h1 className="text-2xl font-bold mb-4">Create a New Blog Post</h1>
-        <form onSubmit={handleSubmit}>
+    
+    <div
+      className="min-h-screen bg-opacity-10 flex clr items-center justify-center bg-cover bg-center"
+      style={{
+        backgroundImage: `url('https://ik.imagekit.io/fdc5q1zdo/home1.png?updatedAt=1728384534897')`,
+      }}
+    >
+      <div className="bg-white bg-opacity-10 p-8 mt-20 rounded shadow-2xl w-full max-w-md">
+        <h1 className="text-2xl font-bold  mb-4">Create a New Blog Post</h1>
+        <form onSubmit={handleSubmit} className="h-45">
           <div className="mb-4">
             <label className="block text-gray-700">Title:</label>
             <input
@@ -115,5 +121,6 @@ export const CreateBlog = () => {
         </form>
       </div>
     </div>
+    
   );
 };

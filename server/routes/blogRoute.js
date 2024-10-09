@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const Blog = require("../models/blogModel");
-
-//get blog
 router.get("/", async (req, res) => {
   try {
     const blogs = await Blog.find();
@@ -11,8 +9,6 @@ router.get("/", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-
-//Get blog by id
 router.get("/view/:id", async (req, res) => {
   const id = req.params.id;
 
@@ -28,8 +24,6 @@ router.get("/view/:id", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-
-//Post blog
 router.post("/", async (req, res) => {
   const { title, img, location, desc } = req.body;
 
@@ -47,8 +41,6 @@ router.post("/", async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
-
-//Update
 router.put("/update/:id", async (req, res) => {
   const { title, img, location, desc } = req.body;
   const id = req.params.id;
@@ -71,8 +63,6 @@ router.put("/update/:id", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-
-//delete
 router.delete("/delete/:id", async (req, res) => {
   try {
     const id = req.params.id;
